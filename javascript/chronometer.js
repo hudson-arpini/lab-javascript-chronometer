@@ -5,7 +5,13 @@ class Chronometer {
   }
 
   start() {
-    let intervalId = setInterval(()=>{this.currentTime++},1000)
+    let intervalId = setInterval(()=>{
+      this.currentTime++
+        minDecElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getMinutes())[0]
+        minUniElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getMinutes())[1]
+        secDecElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getSeconds())[0]
+        secUniElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getSeconds())[1]
+    },1000)
     this.intervalId = intervalId
   }
 
