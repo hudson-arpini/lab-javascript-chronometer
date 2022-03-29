@@ -11,22 +11,31 @@ class Chronometer {
         minUniElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getMinutes())[1]
         secDecElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getSeconds())[0]
         secUniElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getSeconds())[1]
-    },1000)
+        milDecElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getMiliseconds())[0]
+        milUniElement.innerText = chronometer.computeTwoDigitNumber(chronometer.getMiliseconds())[1]
+    },10)
     this.intervalId = intervalId
   }
 
   getMinutes() {
-    let minutes = Math.floor(this.currentTime/60)
+    let minutes = Math.floor(this.currentTime/6000)
     return minutes
   }
 
   getSeconds() {
-    let minutes = Math.floor(this.currentTime/60)
-    if (minutes<1){return this.currentTime}
+    let minutes = Math.floor(this.currentTime/6000)
+    if (minutes<1){return Math.floor(this.currentTime/100)}
     else{
-      let seconds = this.currentTime % (minutes*60)
-      return seconds}
+      let seconds = (this.currentTime/100) % (minutes*60)
+      return Math.floor(seconds)}
   }
+
+  getMiliseconds() {
+    let seconds = Math.floor(this.currentTime/100)
+    if (seconds<1){return this.currentTime}
+    else{ return Math.floor(this.currentTime % (seconds*100))}
+  }
+
 
   computeTwoDigitNumber(value) {
     if(value<10){return '0'+value.toString()}
@@ -44,7 +53,8 @@ class Chronometer {
   split() {
     let minString = this.computeTwoDigitNumber(this.getMinutes())
     let secString = this.computeTwoDigitNumber(this.getSeconds())
-    return `${minString}:${secString}`
+    let miliString = this.computeTwoDigitNumber(this.getMiliseconds())
+    return `${minString}:${secString}:${miliString}`
   }
 }
 

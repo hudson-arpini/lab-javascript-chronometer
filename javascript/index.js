@@ -61,12 +61,15 @@ function setSplitBtn() {
 
 
 function setResetBtn() {
+  chronometer.reset()
   let ol = document.querySelector("#splits")
   ol.innerText = ''
   minDecElement.innerText = '0'
   minUniElement.innerText = '0'
   secDecElement.innerText = '0'
   secUniElement.innerText = '0'
+  milDecElement.innerText = '0'
+  milUniElement.innerText = '0'
 }
 
 // Start/Stop Button
